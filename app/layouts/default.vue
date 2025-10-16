@@ -3,25 +3,17 @@
 </script>
 
 <template>
-  <header class="flex justify-between border-b border-black">
-    <div  class="text-base font-light uppercase">
-      Text-based adventure games engine
-    </div>
+  <Header/>
 
-    <Auth/>
-  </header>
+  <div class="grid grid-cols-2">
+    <Aside/>
 
-  <aside class="border-r w-250">
-    aside
-  </aside>
+    <main>
+      <slot/>
+    </main>
+  </div>
 
-  <main>
-    <slot/>
-  </main>
-
-  <footer>
-
-  </footer>
+  <Footer/>
 </template>
 
 <style scoped>

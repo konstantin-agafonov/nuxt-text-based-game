@@ -17,5 +17,12 @@ export default defineNuxtConfig({
         exposeConfig: true,
         viewer: true,
         // and more...
-    }
+    },
+
+    components: [
+        {
+            path: '~/components',
+            pathPrefix: false,
+        },
+    ],
 })

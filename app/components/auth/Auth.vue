@@ -14,7 +14,7 @@ function activateRegister() {
 </script>
 
 <template>
-  <div class="flex-inline">
+  <div class="flex flex-inline flex-nowrap items-center">
     <a
         v-if="!loginIsActive"
         href="#"
