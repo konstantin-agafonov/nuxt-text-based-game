@@ -9,6 +9,13 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/scripts',
-    '@nuxt/test-utils'
-  ]
+    '@nuxt/test-utils',
+    '@nuxtjs/tailwindcss',
+  ],
+
+    tailwindcss: {
+        exposeConfig: true,
+        viewer: true,
+        // and more...
+    }
 })
