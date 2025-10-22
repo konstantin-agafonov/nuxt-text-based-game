@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/test-utils',
     '@nuxtjs/tailwindcss',
+    '@sidebase/nuxt-auth',
   ],
 
     tailwindcss: {
