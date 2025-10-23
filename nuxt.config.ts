@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/test-utils',
     '@nuxtjs/tailwindcss',
-    '@sidebase/nuxt-auth',
+    '@pinia/nuxt',
   ],
 
     tailwindcss: {
@@ -26,4 +26,10 @@ export default defineNuxtConfig({
             pathPrefix: false,
         },
     ],
+
+    runtimeConfig: {
+        public: {
+            apiBase: 'http://localhost:8100'
+        }
+    }
 })
