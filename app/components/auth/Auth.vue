@@ -27,22 +27,32 @@ function deactivateForms() {
     <!-- Show auth forms if not authenticated -->
     <template v-else>
       <a
-          v-if="!loginIsActive && !registerIsActive"
+          v-if="!loginIsActive"
           href="#"
           class="text-green-500"
           @click="activateLogin"
-      >LOGIN</a>
+      >
+        {{ registerIsActive ? 'GO TO LOGIN' : 'LOGIN' }}
+      </a>
 
-      <Login v-if="loginIsActive" @success="deactivateForms"/>
+      <Login
+          v-if="loginIsActive"
+          @login_successful="deactivateForms"
+      />
 
       <a
-          v-if="!loginIsActive && !registerIsActive"
+          v-if="!registerIsActive"
           href="#" 
           class="text-red-500"
           @click="activateRegister"
-      >REGISTER</a>
+      >
+        {{ loginIsActive ? 'GO TO REGISTER' : 'REGISTER' }}
+      </a>
 
-      <Register v-if="registerIsActive" @success="deactivateForms"/>
+      <Register
+          v-if="registerIsActive"
+          @register_successful="deactivateForms"
+      />
     </template>
   </div>
 </template>
