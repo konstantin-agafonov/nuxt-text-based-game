@@ -74,3 +74,4 @@ export const expectLoadingState = (wrapper: VueWrapper<any>) => {
 export const expectSuccessEvent = (wrapper: VueWrapper<any>, eventName: string) => {
   expect(wrapper.emitted(eventName)).toBeTruthy()
 }
+

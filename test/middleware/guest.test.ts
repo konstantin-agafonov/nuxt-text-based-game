@@ -70,3 +70,4 @@ describe('Guest Middleware', () => {
     expect(mockNavigateTo).toHaveBeenCalledTimes(testRoutes.length)
   })
 })
+

@@ -68,3 +68,4 @@ describe('Auth Middleware', () => {
     expect(mockNavigateTo).toHaveBeenCalledTimes(testRoutes.length)
   })
 })
+

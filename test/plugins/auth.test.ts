@@ -43,3 +43,4 @@ describe('Auth Plugin', () => {
     await expect(authPlugin.default()).resolves.toBeUndefined()
   })
 })
+

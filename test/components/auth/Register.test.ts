@@ -239,3 +239,4 @@ describe('Register Component', () => {
     expect(confirmInput.attributes('disabled')).toBeDefined()
   })
 })
+

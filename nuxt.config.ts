@@ -12,6 +12,8 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@vue-final-modal/nuxt',
+    'nuxt-toast',
   ],
 
     tailwindcss: {

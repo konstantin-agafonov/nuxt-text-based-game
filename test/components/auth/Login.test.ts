@@ -178,3 +178,4 @@ describe('Login Component', () => {
     expect(passwordInput.attributes('disabled')).toBeDefined()
   })
 })
+

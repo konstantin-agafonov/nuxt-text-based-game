@@ -19,3 +19,4 @@ global.console = {
   warn: vi.fn(),
   log: vi.fn()
 }
+

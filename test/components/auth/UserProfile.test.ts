@@ -97,3 +97,4 @@ describe('UserProfile Component', () => {
     expect(logoutButton.classes()).toContain('disabled:opacity-50')
   })
 })
+
