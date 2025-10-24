@@ -1,5 +1,3 @@
-import { defineStore } from 'pinia'
-
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null)
   const isAuthenticated = computed(() => !!user.value)
@@ -69,7 +67,12 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   // Register user
-  const signUp = async (userData: { name: string; email: string; password: string; password_confirmation: string }) => {
+  const signUp = async (userData: {
+      name: string;
+      email: string;
+      password: string;
+      password_confirmation: string
+  }) => {
     isLoading.value = true
     try {
       // Initialize CSRF first
