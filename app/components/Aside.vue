@@ -27,7 +27,7 @@ const menuItems = [
     <!-- Toggle Button -->
     <button
       @click="toggleCollapse"
-      class="absolute top-4 right-2 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200 z-10"
+      class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200 z-10"
     >
       <Icon 
         :name="isCollapsed ? 'heroicons:chevron-right' : 'heroicons:chevron-left'" 
