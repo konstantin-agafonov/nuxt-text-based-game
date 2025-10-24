@@ -62,8 +62,8 @@ export const useGamesStore = defineStore('games', () => {
     error.value = null
     
     try {
-      const { data } = await $fetch<{ data: Game }>(`${apiBase}/api/v1/games/${id}`, {
-        headers: getAuthHeaders()
+      const { data } = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game/${id}`, {
+          credentials: 'include'
       })
       currentGame.value = data
       return data
@@ -81,9 +81,9 @@ export const useGamesStore = defineStore('games', () => {
     error.value = null
     
     try {
-      const { data } = await $fetch<{ data: Game }>(`${apiBase}/api/v1/games`, {
+      const { data } = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game`, {
         method: 'POST',
-        headers: getAuthHeaders(),
+        credentials: 'include',
         body: gameData
       })
       games.value.push(data)
@@ -102,9 +102,9 @@ export const useGamesStore = defineStore('games', () => {
     error.value = null
     
     try {
-      const { data } = await $fetch<{ data: Game }>(`${apiBase}/api/v1/games/${id}`, {
+      const { data } = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game/${id}`, {
         method: 'PUT',
-        headers: getAuthHeaders(),
+        credentials: 'include',
         body: gameData
       })
       
@@ -132,9 +132,9 @@ export const useGamesStore = defineStore('games', () => {
     error.value = null
     
     try {
-      await $fetch(`${apiBase}/api/v1/games/${id}`, {
+      await $fetch(`${apiBase}/api/v1/game/${id}`, {
         method: 'DELETE',
-        headers: getAuthHeaders()
+        credentials: 'include',
       })
       
       games.value = games.value.filter(game => game.id !== id)
