@@ -180,9 +180,6 @@
 </template>
 
 <script setup lang="ts">
-import { useCategoriesStore } from '~/stores/categories'
-import { useGamesStore, type UpdateGameData } from '~/stores/games'
-
 // Middleware to ensure user is authenticated
 definePageMeta({
   middleware: 'auth'
@@ -191,7 +188,7 @@ definePageMeta({
 const route = useRoute()
 const categoriesStore = useCategoriesStore()
 const gamesStore = useGamesStore()
-const toast = useToast()
+const { notify } = useNotification();
 
 // Get game ID from route
 const gameId = parseInt(route.params.id as string)
@@ -263,9 +260,9 @@ const handleSaveGame = async () => {
   try {
     await gamesStore.updateGame(game.value.id, editForm.value)
     isEditing.value = false
-    toast.success('Game updated successfully!')
+    notify({text: 'Game updated successfully!'});
   } catch (error) {
-    toast.error('Failed to update game')
+    notify({text: 'Failed to update game', type: 'error'});
   } finally {
     editFormLoading.value = false
   }

@@ -78,8 +78,6 @@
 </template>
 
 <script setup lang="ts">
-import { useGamesStore } from '~/stores/games'
-
 // Middleware to ensure user is authenticated
 definePageMeta({
   middleware: 'auth'
@@ -87,7 +85,7 @@ definePageMeta({
 
 const route = useRoute()
 const gamesStore = useGamesStore()
-const toast = useToast()
+const { notify } = useNotification();
 
 // Get game ID from route
 const gameId = parseInt(route.params.id as string)
@@ -120,9 +118,9 @@ const handleSaveScenario = async () => {
     const scenarioData = JSON.parse(scenarioText.value)
     
     await gamesStore.updateGame(game.value.id, { scenario: scenarioData })
-    toast.success('Scenario saved successfully!')
+    notify({text: 'Scenario saved successfully!'});
   } catch (error) {
-    toast.error('Invalid JSON format. Please check your scenario data.')
+    notify({text: 'Invalid JSON format. Please check your scenario data.', type: 'error'});
   } finally {
     scenarioLoading.value = false
   }
