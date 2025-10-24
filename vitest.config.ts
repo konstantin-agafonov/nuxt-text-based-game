@@ -3,7 +3,7 @@ import { defineVitestConfig } from '@nuxt/test-utils/config'
 export default defineVitestConfig({
   test: {
     environment: 'happy-dom',
-    setupFiles: ['./test/setup.ts'],
+    setupFiles: ['./app/test/setup.ts'],
     globals: true,
     coverage: {
       provider: 'v8',
