@@ -33,5 +33,7 @@ export default defineNuxtConfig({
         public: {
             apiBase: 'http://localhost:8100'
         }
-    }
+    },
+
+    css: ['vue-final-modal/style.css'],
 })

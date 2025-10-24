@@ -15,6 +15,7 @@
 
   <Footer/>
   <NuxtNotifications position="bottom left" :speed="500" />
+  <ModalsContainer />
 </template>
 
 <style scoped>
