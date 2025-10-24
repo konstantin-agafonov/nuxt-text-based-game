@@ -13,7 +13,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@vue-final-modal/nuxt',
-    'nuxt-toast',
   ],
 
     tailwindcss: {
