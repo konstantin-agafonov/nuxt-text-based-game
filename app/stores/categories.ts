@@ -21,10 +21,7 @@ export const useCategoriesStore = defineStore('categories', () => {
     
     try {
       const { data } = await $fetch<{ data: Category[] }>(`${apiBase}/api/v1/category`, {
-        headers: {
-          'Authorization': `Bearer ${useCookie('auth-token').value}`,
-          'Accept': 'application/json',
-        }
+          credentials: 'include'
       })
       categories.value = data
     } catch (err: any) {
