@@ -20,7 +20,7 @@ export const useCategoriesStore = defineStore('categories', () => {
     error.value = null
     
     try {
-      const { data } = await $fetch<{ data: Category[] }>(`${apiBase}/api/v1/categories`, {
+      const { data } = await $fetch<{ data: Category[] }>(`${apiBase}/api/v1/category`, {
         headers: {
           'Authorization': `Bearer ${useCookie('auth-token').value}`,
           'Accept': 'application/json',

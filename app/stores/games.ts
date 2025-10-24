@@ -45,7 +45,7 @@ export const useGamesStore = defineStore('games', () => {
     error.value = null
     
     try {
-      const { data } = await $fetch<{ data: Game[] }>(`${apiBase}/api/v1/games`, {
+      const { data } = await $fetch<{ data: Game[] }>(`${apiBase}/api/v1/game`, {
         headers: getAuthHeaders()
       })
       games.value = data
