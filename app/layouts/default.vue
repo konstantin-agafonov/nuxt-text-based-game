@@ -3,17 +3,20 @@
 </script>
 
 <template>
-  <Header/>
+  <div class="h-screen flex flex-col overflow-hidden">
+    <Header/>
 
-  <div class="flex justify-stretch">
-    <Aside/>
+    <div class="flex flex-1 overflow-hidden">
+      <Aside/>
 
-    <main class="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-8">
-      <slot/>
-    </main>
+      <main class="flex-1 bg-gray-50 px-4 sm:px-6 lg:px-8 py-8 overflow-y-auto">
+        <slot/>
+      </main>
+    </div>
+
+    <Footer/>
   </div>
-
-  <Footer/>
+  
   <NuxtNotifications position="bottom left" :speed="500" />
   <ModalsContainer />
 </template>
