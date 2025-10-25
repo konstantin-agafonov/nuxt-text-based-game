@@ -22,6 +22,7 @@ const login = async () => {
     form.email = ''
     form.password = ''
     emit('login_successful')
+    navigateTo('/games')
   } else {
     error.value = result.error || 'Login failed'
   }

@@ -34,6 +34,7 @@ const register = async () => {
     form.password = ''
     form.password_confirmation = ''
     emit('register_successful')
+    navigateTo('/games')
   } else {
     error.value = result.error || 'Registration failed'
   }
