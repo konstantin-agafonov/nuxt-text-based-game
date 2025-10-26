@@ -11,6 +11,9 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/test-utils',
     '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    '@vue-final-modal/nuxt',
+    'nuxt3-notifications'
   ],
 
     tailwindcss: {
@@ -25,4 +28,12 @@ export default defineNuxtConfig({
             pathPrefix: false,
         },
     ],
+
+    runtimeConfig: {
+        public: {
+            apiBase: 'http://localhost:8100'
+        }
+    },
+
+    css: ['vue-final-modal/style.css'],
 })
