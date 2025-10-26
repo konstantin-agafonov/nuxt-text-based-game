@@ -150,17 +150,26 @@ export const useAuthStore = defineStore('auth', () => {
 
   // Initialize auth state on app start
   const initAuth = async () => {
+    await initCsrf()
     await fetchUser()
   }
 
+  const getAuthHeaders = () => ({
+      'Authorization': `Bearer ${useCookie('auth-token').value}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+  })
+
   return {
-    user: readonly(user),
+    currentUser: readonly(user),
     isAuthenticated,
     isLoading: readonly(isLoading),
     signIn,
     signUp,
     signOut,
     fetchUser,
-    initAuth
+    initAuth,
+    getCsrfToken,
+    initCsrf
   }
 })

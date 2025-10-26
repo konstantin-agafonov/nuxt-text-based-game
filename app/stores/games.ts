@@ -32,11 +32,8 @@ export const useGamesStore = defineStore('games', () => {
   const config = useRuntimeConfig()
   const apiBase = config.public.apiBase
 
-  const getAuthHeaders = () => ({
-    'Authorization': `Bearer ${useCookie('auth-token').value}`,
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  })
+  const { getCsrfToken, initCsrf } = useAuthStore()
+  const { currentUser } = storeToRefs(useAuthStore())
 
   const fetchGames = async () => {
     loading.value = true
@@ -77,15 +74,29 @@ export const useGamesStore = defineStore('games', () => {
   const createGame = async (gameData: CreateGameData) => {
     loading.value = true
     error.value = null
-    
+
+    gameData.user_id = currentUser.value.id
+
     try {
-      const { data } = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game`, {
+      // Initialize CSRF first
+      await initCsrf()
+      const csrfToken = getCsrfToken()
+      if (!csrfToken) {
+          return { success: false, error: 'CSRF token not provided' }
+      }
+
+      const createdGameData = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game`, {
         method: 'POST',
         credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-XSRF-TOKEN': csrfToken
+        },
         body: gameData
       })
-      games.value.push(data)
-      return data
+
+      games.value.push(createdGameData)
+      return createdGameData
     } catch (err: any) {
       error.value = err.message || 'Failed to create game'
       console.error('Error creating game:', err)
