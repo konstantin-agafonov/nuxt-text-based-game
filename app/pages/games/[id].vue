@@ -5,13 +5,10 @@
       <div class="mb-8">
         <div class="flex items-center justify-between">
           <div>
-            <button
-              @click="navigateTo('/games')"
-              class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
-            >
-              <Icon name="heroicons:arrow-left" class="h-4 w-4 mr-1" />
-              Back to Games
-            </button>
+            <BackButton
+                :clickHandle="() => navigateTo('/games')"
+                label="Back to Games"
+            />
             <h1 class="mt-2 text-3xl font-bold text-gray-900">
               {{ isEditing ? 'Edit Game' : game?.name || 'Loading...' }}
             </h1>
@@ -58,35 +55,9 @@
         <!-- Game Info Card -->
         <div class="bg-white shadow rounded-lg">
           <div class="px-6 py-4">
-            <div v-if="!isEditing" class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700">Name</label>
-                <p class="mt-1 text-sm text-gray-900">{{ game.name }}</p>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700">Category</label>
-                <p class="mt-1 text-sm text-gray-900">{{ categoriesStore.getCategoryName(game.category_id) }}</p>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700">Status</label>
-                <span 
-                  :class="[
-                    'inline-flex px-2 py-1 text-xs font-semibold rounded-full',
-                    game.status === 0 
-                      ? 'bg-yellow-100 text-yellow-800' 
-                      : 'bg-green-100 text-green-800'
-                  ]"
-                >
-                  {{ gamesStore.getGameStatusLabel(game.status) }}
-                </span>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700">Description</label>
-                <p class="mt-1 text-sm text-gray-900 whitespace-pre-wrap">{{ game.description || 'No description provided' }}</p>
-              </div>
-            </div>
-
+            <GameCard v-if="!isEditing" :game/>
             <GameEditForm
+              v-else
               v-model="editForm"
               :errors="editFormErrors"
               :cancelEditing
@@ -128,6 +99,9 @@
 
 <script setup lang="ts">
 // Middleware to ensure user is authenticated
+import GameCard from "~/components/games/GameCard.vue";
+import BackButton from "~/components/ui/BackButton.vue";
+
 definePageMeta({
   middleware: 'auth'
 })
