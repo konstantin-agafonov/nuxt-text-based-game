@@ -99,11 +99,16 @@
 
 <script setup lang="ts">
 // Middleware to ensure user is authenticated
-import GameCard from "~/components/games/GameCard.vue";
-import BackButton from "~/components/ui/BackButton.vue";
-
 definePageMeta({
   middleware: 'auth'
+})
+
+// Load data on mount
+onMounted(async () => {
+  await Promise.all([
+    categoriesStore.fetchCategories(),
+    gamesStore.fetchGame(gameId)
+  ])
 })
 
 const route = useRoute()
@@ -129,14 +134,6 @@ const editFormErrors = ref<Record<string, string>>({})
 
 // Computed
 const game = computed(() => gamesStore.currentGame)
-
-// Load data on mount
-onMounted(async () => {
-  await Promise.all([
-    categoriesStore.fetchCategories(),
-    gamesStore.fetchGame(gameId)
-  ])
-})
 
 // Edit handlers
 const startEditing = () => {
