@@ -77,9 +77,7 @@ export const useGamesStore = defineStore('games', () => {
     loading.value = true
     error.value = null
 
-    if (!gameData.user_id) {
-        gameData.user_id = currentUser.value.id
-    }
+    gameData.user_id = currentUser.value.id
 
     try {
       // Initialize CSRF first
@@ -114,7 +112,7 @@ export const useGamesStore = defineStore('games', () => {
     loading.value = true
     error.value = null
 
-      debugger
+    gameData.user_id = currentUser.value.id
 
     try {
       // Initialize CSRF first
