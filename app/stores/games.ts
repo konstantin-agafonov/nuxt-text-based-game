@@ -19,8 +19,10 @@ export interface CreateGameData {
 export interface UpdateGameData {
   name?: string
   description?: string
+  user_id: number
   category_id?: number
-  scenario?: any
+  scenario?: any,
+  status: number // 0 = DRAFT, 1 = PUBLISHED
 }
 
 export const useGamesStore = defineStore('games', () => {
@@ -75,7 +77,9 @@ export const useGamesStore = defineStore('games', () => {
     loading.value = true
     error.value = null
 
-    gameData.user_id = currentUser.value.id
+    if (!gameData.user_id) {
+        gameData.user_id = currentUser.value.id
+    }
 
     try {
       // Initialize CSRF first
@@ -109,24 +113,37 @@ export const useGamesStore = defineStore('games', () => {
   const updateGame = async (id: number, gameData: UpdateGameData) => {
     loading.value = true
     error.value = null
-    
+
+      debugger
+
     try {
-      const { data } = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game/${id}`, {
+      // Initialize CSRF first
+      await initCsrf()
+      const csrfToken = getCsrfToken()
+      if (!csrfToken) {
+          return { success: false, error: 'CSRF token not provided' }
+      }
+
+      const updatedGameData = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game/${id}`, {
         method: 'PUT',
         credentials: 'include',
+          headers: {
+              'Content-Type': 'application/json',
+              'X-XSRF-TOKEN': csrfToken
+          },
         body: gameData
       })
       
       const index = games.value.findIndex(game => game.id === id)
       if (index !== -1) {
-        games.value[index] = data
+        games.value[index] = updatedGameData
       }
       
       if (currentGame.value?.id === id) {
-        currentGame.value = data
+        currentGame.value = updatedGameData
       }
       
-      return data
+      return updatedGameData
     } catch (err: any) {
       error.value = err.message || 'Failed to update game'
       console.error('Error updating game:', err)
@@ -141,11 +158,22 @@ export const useGamesStore = defineStore('games', () => {
     error.value = null
     
     try {
+        // Initialize CSRF first
+        await initCsrf()
+        const csrfToken = getCsrfToken()
+        if (!csrfToken) {
+            return { success: false, error: 'CSRF token not provided' }
+        }
+
       await $fetch(`${apiBase}/api/v1/game/${id}`, {
         method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json',
+              'X-XSRF-TOKEN': csrfToken
+          },
         credentials: 'include',
       })
-      
+
       games.value = games.value.filter(game => game.id !== id)
       
       if (currentGame.value?.id === id) {
