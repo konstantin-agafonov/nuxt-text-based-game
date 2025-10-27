@@ -79,9 +79,9 @@
 
 <script setup lang="ts">
 // Middleware to ensure user is authenticated
-definePageMeta({
+/*definePageMeta({
   middleware: 'auth'
-})
+})*/
 
 const route = useRoute()
 const gamesStore = useGamesStore()

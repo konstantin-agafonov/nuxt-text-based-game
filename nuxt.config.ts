@@ -31,9 +31,16 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            apiBase: 'http://localhost:8100'
+            apiBase: 'http://localhost:8100',
+
+            baseUrl: "http://localhost:3000",
+            homeUrl: "/dashboard",
+            loginUrl: "/login",
+            verificationUrl: "/verify-email",
         }
     },
 
     css: ['vue-final-modal/style.css'],
+
+    extends: ["./app/api"],
 })
