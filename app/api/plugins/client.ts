@@ -1,13 +1,27 @@
-import { FetchOptions } from 'ofetch';
+import { FetchOptions, FetchError } from 'ofetch';
 import { appendHeader } from "h3";
 import { splitCookiesString } from "set-cookie-parser";
+import User from "../models/User";
+import ApplicationService from "../services/ApplicationService";
+import AuthenticationService from "../services/AuthenticationService";
 
 const SECURE_METHODS = new Set(['post', 'delete', 'put', 'patch']);
 const UNAUTHENTICATED_STATUSES = new Set([401, 419]);
 const UNVERIFIED_USER_STATUS = 409;
 const VALIDATION_ERROR_STATUS = 422;
 
-export default defineNuxtPlugin(nuxtApp => {
+class ApiError extends Error {
+    message: string;
+    errors: string[];
+
+    constructor(data: any) {
+        super(data.message);
+        this.message = data.message;
+        this.errors = data.errors;
+    }
+}
+
+export default defineNuxtPlugin(async (nuxtApp) => {
     const event = useRequestEvent();
     const config = useRuntimeConfig();
     const user = useUser();
@@ -39,6 +53,20 @@ export default defineNuxtPlugin(nuxtApp => {
             ...headers,
             ...(csrfToken && { [apiConfig.csrfHeaderName]: csrfToken }),
         };
+    }
+
+    async function initUser(getter: () => Promise<User | null>) {
+        try {
+            user.value = await getter();
+        } catch (err) {
+            if (
+                err instanceof FetchError &&
+                err.response &&
+                UNAUTHENTICATED_STATUSES.has(err.response.status)
+            ) {
+                console.warn("[API initUser] User is not authenticated");
+            }
+        }
     }
 
     const httpOptions: FetchOptions = {
@@ -109,4 +137,15 @@ export default defineNuxtPlugin(nuxtApp => {
     };
 
     const client: any = $fetch.create(httpOptions);
+
+    const api: ApiServiceContainer = {
+        application: new ApplicationService(client),
+        authentication: new AuthenticationService(client),
+    };
+
+    if (process.server && user.value === null) {
+        await initUser(() => api.authentication.user());
+    }
+
+    return { provide: { api } };
 })
