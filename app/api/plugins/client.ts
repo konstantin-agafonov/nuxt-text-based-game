@@ -1,6 +1,11 @@
 import { FetchOptions } from 'ofetch';
+import { appendHeader } from "h3";
+import { splitCookiesString } from "set-cookie-parser";
 
 const SECURE_METHODS = new Set(['post', 'delete', 'put', 'patch']);
+const UNAUTHENTICATED_STATUSES = new Set([401, 419]);
+const UNVERIFIED_USER_STATUS = 409;
+const VALIDATION_ERROR_STATUS = 422;
 
 export default defineNuxtPlugin(nuxtApp => {
     const event = useRequestEvent();
@@ -78,11 +83,30 @@ export default defineNuxtPlugin(nuxtApp => {
             }
         },
 
-        onResponseError({ response }) {
-            // TODO
+        async onResponseError({ response }) {
+            if (
+                apiConfig.redirectUnauthenticated &&
+                UNAUTHENTICATED_STATUSES.has(response.status)
+            ) {
+                await navigateTo(config.public.loginUrl);
+
+                return;
+            }
+
+            if (
+                apiConfig.redirectUnverified &&
+                response.status === UNVERIFIED_USER_STATUS
+            ) {
+                await navigateTo(config.public.verificationUrl);
+
+                return;
+            }
+
+            if (response.status === VALIDATION_ERROR_STATUS) {
+                throw new ApiError(response._data);
+            }
         },
     };
 
     const client: any = $fetch.create(httpOptions);
-
 })
