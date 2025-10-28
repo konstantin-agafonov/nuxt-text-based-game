@@ -31,9 +31,8 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            apiBase: 'http://localhost:8100',
-
-            baseUrl: "http://localhost:3000",
+            //apiBase: 'http://localhost:8100',
+            baseUrl: "http://localhost:8100",
             homeUrl: "/dashboard",
             loginUrl: "/login",
             verificationUrl: "/verify-email",
