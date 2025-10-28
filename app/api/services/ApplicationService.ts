@@ -1,4 +1,4 @@
-import Application from "../models/Application";
+import type Application from "../models/Application";
 import { ApiServiceBase } from "./ApiServiceBase";
 
 export default class ApplicationService extends ApiServiceBase {

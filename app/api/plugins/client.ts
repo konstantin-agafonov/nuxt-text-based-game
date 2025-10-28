@@ -1,9 +1,10 @@
-import { FetchOptions, FetchError } from 'ofetch';
+import type { FetchOptions } from 'ofetch';
+import { FetchError } from 'ofetch';
 import { appendHeader } from "h3";
 import { splitCookiesString } from "set-cookie-parser";
-import ApiError from "../models/ApiError";
-import User from "../models/User";
-import { ApiServiceContainer } from "../services/ApiServiceContainer";
+import type ApiError from "../models/ApiError";
+import type User from "../models/User";
+import type { ApiServiceContainer } from "../services/ApiServiceContainer";
 import ApplicationService from "../services/ApplicationService";
 import AuthenticationService from "../services/AuthenticationService";
 

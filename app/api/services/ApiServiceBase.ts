@@ -1,6 +1,6 @@
-import { $Fetch } from 'ofetch';
+import type { $Fetch } from 'ofetch';
 
-export abstract class ApiBaseService {
+export abstract class ApiServiceBase {
     private client: $Fetch;
 
     constructor(client: $Fetch) {

@@ -1,4 +1,4 @@
-import { ApiServiceContainer } from "../services/ApiServiceContainer";
+import type { ApiServiceContainer } from "../services/ApiServiceContainer";
 
 export const useApi = () => {
     const { $api } = useNuxtApp();
