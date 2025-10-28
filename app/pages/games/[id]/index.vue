@@ -99,9 +99,9 @@
 
 <script setup lang="ts">
 // Middleware to ensure user is authenticated
-definePageMeta({
+/*definePageMeta({
   middleware: 'auth'
-})
+})*/
 
 // Load data on mount
 onMounted(async () => {

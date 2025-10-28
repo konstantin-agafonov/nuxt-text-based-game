@@ -5,13 +5,10 @@
       <div class="mb-8">
         <div class="flex items-center justify-between">
           <div>
-            <button
-              @click="navigateTo(`/games/${gameId}`)"
-              class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
-            >
-              <Icon name="heroicons:arrow-left" class="h-4 w-4 mr-1" />
-              Back to Game
-            </button>
+            <BackButton
+              :clickHandle="navigateTo(`/games/${gameId}`)"
+              label="Back to Game"
+            />
             <h1 class="mt-2 text-3xl font-bold text-gray-900">Edit Scenario</h1>
             <p class="mt-1 text-gray-600">{{ game?.name }}</p>
           </div>
@@ -79,8 +76,18 @@
 
 <script setup lang="ts">
 // Middleware to ensure user is authenticated
-definePageMeta({
+/*definePageMeta({
   middleware: 'auth'
+})*/
+
+// Load data on mount
+onMounted(async () => {
+  await gamesStore.fetchGame(gameId)
+
+  // Initialize scenario text
+  if (game.value?.scenario) {
+    scenarioText.value = JSON.stringify(game.value.scenario, null, 2)
+  }
 })
 
 const route = useRoute()
@@ -96,16 +103,6 @@ const scenarioLoading = ref(false)
 
 // Computed
 const game = computed(() => gamesStore.currentGame)
-
-// Load data on mount
-onMounted(async () => {
-  await gamesStore.fetchGame(gameId)
-  
-  // Initialize scenario text
-  if (game.value?.scenario) {
-    scenarioText.value = JSON.stringify(game.value.scenario, null, 2)
-  }
-})
 
 // Save scenario handler
 const handleSaveScenario = async () => {
