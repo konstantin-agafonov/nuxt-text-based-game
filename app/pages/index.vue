@@ -3,7 +3,9 @@
 </script>
 
 <template>
-This is home page
+  <div>Page: index</div>
+
+  <ApplicationInfo />
 </template>
 
 <style scoped>
