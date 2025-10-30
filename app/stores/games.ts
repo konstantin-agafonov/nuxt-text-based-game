@@ -78,8 +78,6 @@ export const useGamesStore = defineStore('games', () => {
 
     gameData.user_id = user.value.id
 
-      debugger
-
     try {
       const createdGameData = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game`, {
         method: 'POST',
