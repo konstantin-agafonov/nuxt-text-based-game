@@ -99,9 +99,9 @@
 
 <script setup lang="ts">
 // Middleware to ensure user is authenticated
-/*definePageMeta({
-  middleware: 'auth'
-})*/
+definePageMeta({
+  middleware: 'sanctum:auth'
+})
 
 // Load data on mount
 onMounted(async () => {
@@ -154,6 +154,7 @@ const cancelEditing = () => {
 }
 
 const handleSaveGame = async () => {
+  debugger
   if (!game.value) return
 
   editFormErrors.value = {}
