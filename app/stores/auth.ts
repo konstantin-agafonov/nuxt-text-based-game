@@ -1,10 +1,9 @@
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref(null)
-  const isAuthenticated = computed(() => !!user.value)
   const isLoading = ref(false)
+  const config = useRuntimeConfig()
 
   // Base URL for Laravel backend
-  const baseURL = 'http://localhost:8100'
+  const apiBase = config.public.apiBase
 
   // Get CSRF token from cookies
   const getCsrfToken = () => {
@@ -21,7 +20,7 @@ export const useAuthStore = defineStore('auth', () => {
   // Initialize CSRF protection
   const initCsrf = async () => {
     try {
-      await $fetch(`${baseURL}/sanctum/csrf-cookie`, { 
+      await $fetch(`${apiBase}/sanctum/csrf-cookie`, { 
         credentials: 'include' 
       })
     } catch (error) {
@@ -29,114 +28,10 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  // Login user
-  const signIn = async (credentials: { email: string; password: string }) => {
-    isLoading.value = true
-    try {
-      // Initialize CSRF first
-      await initCsrf()
-      const csrfToken = getCsrfToken()
-      if (!csrfToken) {
-        return { success: false, error: 'CSRF token not provided' }
-      }
-
-      const response = await fetch(`${baseURL}/login`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-XSRF-TOKEN': csrfToken
-        },
-        body: JSON.stringify(credentials)
-      })
-
-      if (response.ok) {
-        // Get user data after successful login
-        await fetchUser()
-        return { success: true }
-      } else {
-        const error = await response.json()
-        return { success: false, error: error.message || 'Login failed' }
-      }
-    } catch (error) {
-      console.error('Login error:', error)
-      return { success: false, error: 'Network error' }
-    } finally {
-      isLoading.value = false
-    }
-  }
-
-  // Register user
-  const signUp = async (userData: {
-      name: string;
-      email: string;
-      password: string;
-      password_confirmation: string
-  }) => {
-    isLoading.value = true
-    try {
-      // Initialize CSRF first
-      await initCsrf()
-      const csrfToken = getCsrfToken()
-      if (!csrfToken) {
-        return { success: false, error: 'CSRF token not provided' }
-      }
-
-      const response = await fetch(`${baseURL}/register`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-XSRF-TOKEN': csrfToken
-        },
-        body: JSON.stringify(userData)
-      })
-
-      if (response.ok) {
-        // Get user data after successful registration
-        await fetchUser()
-        return { success: true }
-      } else {
-        const error = await response.json()
-        return { success: false, error: error.message || 'Registration failed' }
-      }
-    } catch (error) {
-      console.error('Registration error:', error)
-      return { success: false, error: 'Network error' }
-    } finally {
-      isLoading.value = false
-    }
-  }
-
-  // Logout user
-  const signOut = async () => {
-    isLoading.value = true
-    try {
-      await initCsrf()
-      const csrfToken = getCsrfToken()
-      if (!csrfToken) {
-        return { success: false, error: 'CSRF token not provided' }
-      }
-
-      await fetch(`${baseURL}/logout`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'X-XSRF-TOKEN': csrfToken
-        }
-      })
-    } catch (error) {
-      console.error('Logout error:', error)
-    } finally {
-      user.value = null
-      isLoading.value = false
-    }
-  }
-
   // Fetch current user
   const fetchUser = async () => {
     try {
-      const userData = await $fetch(`${baseURL}/api/user`, { 
+      const userData = await $fetch(`${apiBase}/api/user`, { 
         credentials: 'include' 
       })
       user.value = userData
@@ -148,28 +43,115 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  // Initialize auth state on app start
-  const initAuth = async () => {
-    await initCsrf()
-    await fetchUser()
-  }
+    // Login user
+    /*const signIn = async (credentials: { email: string; password: string }) => {
+        isLoading.value = true
+        try {
+            // Initialize CSRF first
+            await initCsrf()
+            const csrfToken = getCsrfToken()
+            if (!csrfToken) {
+                return { success: false, error: 'CSRF token not provided' }
+            }
 
-  const getAuthHeaders = () => ({
-      'Authorization': `Bearer ${useCookie('auth-token').value}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-  })
+            const response = await fetch(`${baseURL}/login`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-XSRF-TOKEN': csrfToken
+                },
+                body: JSON.stringify(credentials)
+            })
+
+            if (response.ok) {
+                // Get user data after successful login
+                await fetchUser()
+                return { success: true }
+            } else {
+                const error = await response.json()
+                return { success: false, error: error.message || 'Login failed' }
+            }
+        } catch (error) {
+            console.error('Login error:', error)
+            return { success: false, error: 'Network error' }
+        } finally {
+            isLoading.value = false
+        }
+    }*/
+
+    // Register user
+    const signUp = async (userData: {
+        name: string;
+        email: string;
+        password: string;
+        password_confirmation: string
+    }) => {
+        isLoading.value = true
+        try {
+            // Initialize CSRF first
+            await initCsrf()
+            const csrfToken = getCsrfToken()
+            if (!csrfToken) {
+                return { success: false, error: 'CSRF token not provided' }
+            }
+
+            const response = await fetch(`${apiBase}/register`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-XSRF-TOKEN': csrfToken
+                },
+                body: JSON.stringify(userData)
+            })
+
+            if (response.ok) {
+                // Get user data after successful registration
+                // await fetchUser()
+                return { success: true }
+            } else {
+                const error = await response.json()
+                return { success: false, error: error.message || 'Registration failed' }
+            }
+        } catch (error) {
+            console.error('Registration error:', error)
+            return { success: false, error: 'Network error' }
+        } finally {
+            isLoading.value = false
+        }
+    }
+
+    // Logout user
+    /*const signOut = async () => {
+        isLoading.value = true
+        try {
+            await initCsrf()
+            const csrfToken = getCsrfToken()
+            if (!csrfToken) {
+                return { success: false, error: 'CSRF token not provided' }
+            }
+
+            await fetch(`${baseURL}/logout`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'X-XSRF-TOKEN': csrfToken
+                }
+            })
+        } catch (error) {
+            console.error('Logout error:', error)
+        } finally {
+            user.value = null
+            isLoading.value = false
+        }
+    }*/
 
   return {
-    currentUser: readonly(user),
-    isAuthenticated,
     isLoading: readonly(isLoading),
-    signIn,
-    signUp,
-    signOut,
     fetchUser,
-    initAuth,
     getCsrfToken,
-    initCsrf
+    initCsrf,
+    signUp,
   }
 })

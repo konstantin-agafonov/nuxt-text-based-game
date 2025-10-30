@@ -58,7 +58,24 @@
             v-for="category in categoriesStore.categories"
             :key="category.id"
             :value="category.id"
+            :selected="model.category_id === category.id"
         >{{ category.name }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label
+          for="edit-status"
+          class="block text-sm font-medium text-gray-700"
+      >Status</label>
+      <select
+          id="edit-status"
+          v-model="model.status"
+          required
+          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+      >
+        <option key="0" value="0" :selected="model.status === 0">Draft</option>
+        <option key="1" value="1" :selected="model.status === 1">Published</option>
       </select>
     </div>
 

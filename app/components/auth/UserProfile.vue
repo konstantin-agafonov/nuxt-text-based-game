@@ -1,21 +1,21 @@
 <script setup lang="ts">
-const authStore = useAuthStore()
+const { isAuthenticated, user, logout } = useSanctumAuth()
 const isLoggingOut = ref(false)
 
-const logout = async () => {
+const logoutHandle = async () => {
   isLoggingOut.value = true
-  await authStore.signOut()
+  logout()
   isLoggingOut.value = false
 }
 </script>
 
 <template>
-  <div v-if="authStore.isAuthenticated" class="flex items-center gap-2">
+  <div v-if="isAuthenticated" class="flex items-center gap-2">
     <span class="text-sm text-gray-600">
-      Welcome, {{ authStore.user?.name || authStore.user?.email }}
+      Welcome, {{ user?.name || user?.email }}
     </span>
     <button
-        @click="logout"
+        @click="logoutHandle"
         :disabled="isLoggingOut"
         class="text-sm w-[80px] h-[25px] bg-red-200 cursor-pointer disabled:opacity-50"
     >
