@@ -154,7 +154,6 @@ const cancelEditing = () => {
 }
 
 const handleSaveGame = async () => {
-  debugger
   if (!game.value) return
 
   editFormErrors.value = {}
