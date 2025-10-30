@@ -1,8 +1,5 @@
 <script setup lang="ts">
-const emit = defineEmits(['register_successful'])
-
-const authStore = useAuthStore()
-const form = reactive({ 
+const form = reactive({
   name: '', 
   email: '', 
   password: '', 
@@ -25,7 +22,7 @@ const register = async () => {
   isSubmitting.value = true
   error.value = ''
   
-  const result = await authStore.signUp(form)
+  const result = null /*await authStore.signUp(form)*/
   
   if (result.success) {
     // Reset form on success

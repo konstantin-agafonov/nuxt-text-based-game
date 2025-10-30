@@ -34,9 +34,6 @@ export const useGamesStore = defineStore('games', () => {
   const config = useRuntimeConfig()
   const apiBase = config.public.apiBase
 
-  const { getCsrfToken, initCsrf } = useAuthStore()
-  const { currentUser } = storeToRefs(useAuthStore())
-
   const fetchGames = async () => {
     loading.value = true
     error.value = null

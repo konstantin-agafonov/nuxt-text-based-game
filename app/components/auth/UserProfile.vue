@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const authStore = useAuthStore()
 const isLoggingOut = ref(false)
 
 const logout = async () => {
   isLoggingOut.value = true
-  await authStore.signOut()
+  /*await authStore.signOut()*/
   isLoggingOut.value = false
 }
 </script>

@@ -13,7 +13,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@vue-final-modal/nuxt',
-    'nuxt3-notifications'
+    'nuxt3-notifications',
+    'nuxt-auth-sanctum',
   ],
 
     tailwindcss: {
@@ -31,15 +32,18 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            //apiBase: 'http://localhost:8100',
-            baseUrl: "http://localhost:8100",
-            homeUrl: "/dashboard",
-            loginUrl: "/login",
-            verificationUrl: "/verify-email",
+            apiBase: 'http://localhost:8100',
         }
     },
 
     css: ['vue-final-modal/style.css'],
 
-    extends: ["./app/api"],
+    // nuxt-auth-sanctum options (also configurable via environment variables)
+    sanctum: {
+        baseUrl: 'http://localhost:8100', // Laravel API
+        redirect: {
+            onLogin: '/games'
+        },
+        logLevel: 5,
+    }
 })
