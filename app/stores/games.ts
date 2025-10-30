@@ -107,7 +107,7 @@ export const useGamesStore = defineStore('games', () => {
     gameData.user_id = user.value.id
 
     try {
-      const updatedGameData = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game/${id}`, {
+      const { data: updatedGameData } = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game/${id}`, {
         method: 'PUT',
         credentials: 'include',
           headers: {

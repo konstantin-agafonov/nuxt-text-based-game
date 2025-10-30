@@ -127,6 +127,7 @@ const editFormLoading = ref(false)
 const editForm = ref<UpdateGameData>({
   name: '',
   description: '',
+  status: 0,
   category_id: 0
 })
 
@@ -142,6 +143,7 @@ const startEditing = () => {
   editForm.value = {
     name: game.value.name,
     description: game.value.description || '',
+    status: game.value.status,
     category_id: game.value.category_id
   }
   isEditing.value = true
