@@ -31,7 +31,7 @@ async function submit() {
 
 <template>
   <div>
-    <p>Page: login</p>
+    <p>Page: register</p>
 
     <form @submit.prevent="submit">
       <small>{{ error }}</small>

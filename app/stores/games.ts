@@ -34,6 +34,8 @@ export const useGamesStore = defineStore('games', () => {
   const config = useRuntimeConfig()
   const apiBase = config.public.apiBase
 
+  const { getCsrfToken } = useAuthStore()
+  const { user } = useSanctumAuth()
   const fetchGames = async () => {
     loading.value = true
     error.value = null
@@ -74,22 +76,17 @@ export const useGamesStore = defineStore('games', () => {
     loading.value = true
     error.value = null
 
-    gameData.user_id = currentUser.value.id
+    gameData.user_id = user.value.id
+
+      debugger
 
     try {
-      // Initialize CSRF first
-      await initCsrf()
-      const csrfToken = getCsrfToken()
-      if (!csrfToken) {
-          return { success: false, error: 'CSRF token not provided' }
-      }
-
       const createdGameData = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game`, {
         method: 'POST',
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
-            'X-XSRF-TOKEN': csrfToken
+            'X-XSRF-TOKEN': getCsrfToken()
         },
         body: gameData
       })
@@ -109,22 +106,15 @@ export const useGamesStore = defineStore('games', () => {
     loading.value = true
     error.value = null
 
-    gameData.user_id = currentUser.value.id
+    gameData.user_id = user.value.id
 
     try {
-      // Initialize CSRF first
-      await initCsrf()
-      const csrfToken = getCsrfToken()
-      if (!csrfToken) {
-          return { success: false, error: 'CSRF token not provided' }
-      }
-
       const updatedGameData = await $fetch<{ data: Game }>(`${apiBase}/api/v1/game/${id}`, {
         method: 'PUT',
         credentials: 'include',
           headers: {
               'Content-Type': 'application/json',
-              'X-XSRF-TOKEN': csrfToken
+              'X-XSRF-TOKEN': getCsrfToken()
           },
         body: gameData
       })
@@ -153,18 +143,11 @@ export const useGamesStore = defineStore('games', () => {
     error.value = null
     
     try {
-        // Initialize CSRF first
-        await initCsrf()
-        const csrfToken = getCsrfToken()
-        if (!csrfToken) {
-            return { success: false, error: 'CSRF token not provided' }
-        }
-
       await $fetch(`${apiBase}/api/v1/game/${id}`, {
         method: 'DELETE',
           headers: {
               'Content-Type': 'application/json',
-              'X-XSRF-TOKEN': csrfToken
+              'X-XSRF-TOKEN': getCsrfToken()
           },
         credentials: 'include',
       })

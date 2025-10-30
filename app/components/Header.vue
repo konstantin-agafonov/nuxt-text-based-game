@@ -7,7 +7,6 @@
     <div  class="text-base font-light uppercase">
       Text-based adventure games engine
     </div>
-
     <Auth/>
   </header>
 </template>
