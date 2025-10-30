@@ -10,12 +10,14 @@ interface Credentials {
   password_confirmation: string;
 }
 
-const { login } = useSanctumAuth();
+const { signUp } = useAuthStore();
+const { login } = useSanctumAuth()
 
 const credentials: Credentials = reactive({
-  email: "",
-  password: "",
-  remember: true,
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
 });
 
 const error = ref<string>("");
@@ -23,7 +25,14 @@ const error = ref<string>("");
 async function submit() {
   try {
     error.value = "";
-    await register(credentials);
+    const signUpResult = await signUp(credentials)
+    if (signUpResult.success) {
+      await login({
+        email: credentials.email,
+        password: credentials.password,
+        remember: true,
+      })
+    }
   } catch (err) {
     error.value = err as string;
   }
