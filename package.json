@@ -24,6 +24,7 @@
     "@pinia/nuxt": "^0.9.0",
     "@unhead/vue": "^2.0.19",
     "@vue-final-modal/nuxt": "^1.0.3",
+    "@vue-flow/core": "^1.47.0",
     "eslint": "^9.38.0",
     "nuxt": "^4.2.0",
     "nuxt-auth-sanctum": "1.4.2",

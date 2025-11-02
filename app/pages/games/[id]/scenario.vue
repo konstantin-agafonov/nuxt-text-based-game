@@ -38,7 +38,9 @@
 
   <!-- Scenario Editor -->
   <div v-else-if="game" class="">
-<!--    <div class="px-6 py-4 border-b border-gray-200">
+    <ScenarioEditor/>
+
+    <!--    <div class="px-6 py-4 border-b border-gray-200">
       <h2 class="text-lg font-medium text-gray-900">Game Scenario</h2>
       <p class="mt-1 text-sm text-gray-500">Edit the scenario data for your game</p>
     </div>
