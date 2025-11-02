@@ -41,7 +41,7 @@ function handleDrop(event) {
     }
   }
 
-  addNodes([newNode])
+  addNodes(newNode)
 
   nextTick(() => {
     const node = findNode(newNode.id)
