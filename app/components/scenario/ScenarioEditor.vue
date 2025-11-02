@@ -6,33 +6,20 @@ import '@vue-flow/core/dist/theme-default.css';
 
 import { VueFlow, useVueFlow, useNode } from "@vue-flow/core";
 
-import type { Dimensions, Elements } from '@vue-flow/core'
-const elements = ref<Elements>()
+import type { Dimensions } from '@vue-flow/core'
+
+const scenarioStore = useScenarioStore()
+const { scenario } = storeToRefs(scenarioStore)
 
 import FieldNode from '@/components/scenario/nodes/FieldNode.vue'
+import {useScenarioStore} from "~/stores/scenario";
 
 const nodeTypes = {
   field: markRaw(FieldNode),
 }
 
-const { findNode, nodes, addNodes, addEdges, project, vueFlowRef, onConnect, setNodes, setEdges, setViewport } =
-    useVueFlow({
-      nodes: [
-        {
-          id: '1',
-          type: 'field',
-          position: { x: 25, y: 25 },
-          data: { label: 'FieldNode 1', },
-        },
-        {
-          id: '2',
-          type: 'input',
-          position: { x: 100, y: 150 },
-          data: { label: 'Node 1', },
-        }
-      ]
-    })
-
+const { findNode, nodes, addNodes, addEdges, project,
+  vueFlowRef, onConnect, setNodes, setEdges, setViewport } = useVueFlow()
 
 
 function handleDrop(event) {
@@ -131,7 +118,7 @@ onConnect((params) => {
   >
     <VueFlow
         :node-types="nodeTypes"
-        v-model="elements"
+        v-model="scenario"
         fit-view
     ></VueFlow>
   </div>

@@ -29,12 +29,12 @@ function handleClickDeleteBtn(index: number) {
 </script>
 
 <template>
-  <div class="max-w-[520px] rounded-sm border border-gray-200 bg-white p-3 shadow-md">
+  <div class="max-w-[300px] rounded-sm border border-gray-200 bg-white p-3 shadow-md">
     <div class="flex flex-col gap-y-4">
       <div class="flex justify-between">
         <div class="flex items-center gap-x-2">
           <div class="flex flex-col gap-y-1">
-            <p class="text-sm text-gray-500">Start</p>
+            <p class="text-sm text-gray-500">Field location:</p>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@ function handleClickDeleteBtn(index: number) {
         <p class="flex items-center gap-x-1">
           Input
         </p>
-        <plus-icon class="h-6 w-5 cursor-pointer text-primary" @click="handleClickAddBtn" />
+        <div class="h-6 w-5 cursor-pointer text-primary" @click="handleClickAddBtn" />
       </div>
 
       <div class="grid gap-y-3">
