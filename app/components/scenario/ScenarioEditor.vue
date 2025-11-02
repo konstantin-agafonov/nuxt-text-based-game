@@ -3,7 +3,8 @@
 import '@vue-flow/core/dist/style.css';
 /* this contains the default theme, these are optional styles */
 import '@vue-flow/core/dist/theme-default.css';
-import {VueFlow} from "@vue-flow/core";
+import { VueFlow, useVueFlow, useNode } from "@vue-flow/core";
+const { onConnect, addEdges, findNode } = useVueFlow()
 
 const nodes = ref([
   {
@@ -41,7 +42,43 @@ function handleOnDragOver(event) {
   if (event.dataTransfer) {
     event.dataTransfer.dropEffect = "move";
   }
-}</script>
+}
+
+
+onConnect((params) => {
+  addEdges(params)
+})
+
+const node = useNode();
+/*watchEffect(() => {
+  if (node.connectedEdges && node.connectedEdges.value.length > 0) {
+    const filteredEdges = node.connectedEdges.value.filter(
+        (item) => item.target === node.id
+    );
+    referenceOptions.value = filteredEdges.map((edge) => {
+      const node = findNode(edge.source);
+      const currentItem: Option = {
+        groupName: node?.data.title ?? node?.label,
+        options: [],
+      };
+
+      if (node?.data.output) {
+        node?.data.output
+            .filter((item: any) => Boolean(item.name))
+            .forEach((option: any) => {
+              currentItem.options.push({
+                label: option.name,
+                value: option.name,
+              });
+            });
+      } else {
+        currentItem.options = [];
+      }
+      return currentItem;
+    });
+  }
+});*/
+</script>
 
 <template>
   <Draggable/>
