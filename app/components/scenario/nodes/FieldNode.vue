@@ -6,6 +6,13 @@ const props = defineProps<NodeProps>()
 const node = useNode()
 const { removeNodes, nodes, addNodes } = useVueFlow()
 
+const scene = ref('Enter scene here')
+const editing = ref(false)
+
+function handleClickEdit() {
+  editing.value = true
+}
+
 function handleClickDeleteBtn() {
   removeNodes(node.id)
 }
@@ -33,6 +40,11 @@ function handleClickDuplicateBtn() {
 
         <div class="flex items-center gap-x-2">
           <Icon
+              name="heroicons:pencil-square"
+              class="cursor-pointer w-4 h-4 text-green-600 group-hover:text-green-900"
+              @click="handleClickEdit"
+          />
+          <Icon
               name="heroicons:document-duplicate"
               class="cursor-pointer w-4 h-4 text-blue-600 group-hover:text-blue-900"
               @click="handleClickDuplicateBtn"
@@ -45,14 +57,12 @@ function handleClickDuplicateBtn() {
         </div>
       </div>
 
-      <div class="flex justify-between">
-        <p class="flex items-center gap-x-1">
-          Input
-        </p>
-        <div class="h-6 w-5 cursor-pointer text-primary" @click="handleClickAddBtn" />
-      </div>
-
-      <div class="grid gap-y-3">
+      <div class="flex flex-col">
+        <div class="rounded-md bg-gray-100 p-1">
+          <p class="text-sm">
+            Scene: {{ scene }}
+          </p>
+        </div>
       </div>
     </div>
     <Handle id="handle-w" type="source" style="width: 11px;height: 11px;background-color: white;border: 1px solid black;" :position="Position.Left" />
