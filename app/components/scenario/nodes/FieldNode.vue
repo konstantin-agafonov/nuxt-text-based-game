@@ -55,9 +55,9 @@ function handleClickDuplicateBtn() {
       <div class="grid gap-y-3">
       </div>
     </div>
-    <Handle type="source" :position="Position.Left" />
-    <Handle type="source" :position="Position.Right" />
-    <Handle type="source" :position="Position.Top" />
-    <Handle type="source" :position="Position.Bottom" />
+    <Handle id="handle-w" type="source" style="width: 12px;height: 12px;" :position="Position.Left" />
+    <Handle id="handle-e" type="source" style="width: 12px;height: 12px;" :position="Position.Right"/>
+    <Handle id="handle-n" type="source" style="width: 12px;height: 12px;" :position="Position.Top" />
+    <Handle id="handle-s" type="source" style="width: 12px;height: 12px;" :position="Position.Bottom" />
   </div>
 </template>

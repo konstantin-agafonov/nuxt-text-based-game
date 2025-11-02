@@ -18,7 +18,7 @@ const nodeTypes = {
   field: markRaw(FieldNode),
 }
 
-const { findNode, nodes, addNodes, addEdges, project,
+const { findNode, nodes, edges, addNodes, addEdges, project,
   vueFlowRef, onConnect, setNodes, setEdges, setViewport } = useVueFlow()
 
 
@@ -71,6 +71,20 @@ function handleOnDragOver(event) {
 
 
 onConnect((params) => {
+  const { source, sourceHandle, target, targetHandle } = params
+
+  // Prevent multiple edges from the same handle
+  const existing = edges.value.find(
+      (e) =>
+          (e.source === source && e.sourceHandle === sourceHandle) ||
+          (e.target === target && e.targetHandle === targetHandle)
+  )
+
+  if (existing) {
+    console.warn('⚠️ Handle already connected, skipping duplicate.')
+    return false // Vue Flow will cancel the connection
+  }
+
   addEdges(params)
 })
 
