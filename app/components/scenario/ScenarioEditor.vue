@@ -37,14 +37,41 @@ const { findNode, nodes, addNodes, addEdges, project, vueFlowRef, onConnect, set
 
 function handleDrop(event) {
   // Create node from dragged data
-  const nodeType = event.dataTransfer.getData('node')
+  const type = event.dataTransfer.getData('node')
+  const { left, top } = vueFlowRef.value!.getBoundingClientRect()
+
+  const position = project({
+    x: event.clientX - left,
+    y: event.clientY - top
+  })
+
   const newNode = {
-    id: new Date(),
-    type: nodeType,
-    position: { x: 10, y: 15 },
+    id: (nodes.value.length + 1).toString(),
+    type,
+    position,
+    data: {
+      test: 'test'
+    }
   }
 
   addNodes([newNode])
+
+  nextTick(() => {
+    const node = findNode(newNode.id)
+    const stop = watch(
+        () => node!.dimensions,
+        (dimensions: Dimensions) => {
+          if (dimensions.width > 0 && dimensions.height > 0 && node) {
+            node.position = {
+              x: node.position.x - node.dimensions.width / 2,
+              y: node.position.y - node.dimensions.height / 2
+            }
+            stop()
+          }
+        },
+        { deep: true, flush: 'post' }
+    )
+  })
 }
 
 function handleOnDragOver(event) {
@@ -93,7 +120,7 @@ onConnect((params) => {
 </script>
 
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center p-1">
     <DraggableField/>
   </div>
 
