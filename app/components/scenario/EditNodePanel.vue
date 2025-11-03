@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const isCollapsed = ref(false)
+const scenarioStore = useScenarioStore()
+const { nodeBeingEdited, someNodeIsBeingEdited } = storeToRefs(scenarioStore)
 
 const handleClose = () => {
-  isCollapsed.value = true
+  nodeBeingEdited.value = null
 }
-
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const handleClose = () => {
     :class="[
       'bg-white border-l border-black transition-all duration-300 ease-in-out ' +
       'absolute w-[400px] top-0 bottom-0 flex flex-col gap-y-1 p-1',
-      isCollapsed ? 'right-[-400px]' : 'right-0'
+      someNodeIsBeingEdited ? 'right-0' : 'right-[-400px]'
     ]"
   >
     <div class="absolute top-2 right-2">
@@ -38,15 +38,16 @@ const handleClose = () => {
 
     <header class="flex flex-col">
       <div class="flex justify-between">
-        <p class="text-lg">Node type: node name</p>
+        <p class="text-lg">{{ nodeBeingEdited?.node.type }}: node name</p>
       </div>
-      <p class="text-sm">Node id:</p>
+      <p class="text-sm">Node id: {{ nodeBeingEdited?.id }}</p>
     </header>
     <div class="flex flex-col gap-y-1">
       <div class="rounded-lg p-2 bg-gray-100">
         <p class="text-md">Scene</p>
         <p class="text-sm">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, eum!
+          {{ nodeBeingEdited }}
         </p>
       </div>
     </div>

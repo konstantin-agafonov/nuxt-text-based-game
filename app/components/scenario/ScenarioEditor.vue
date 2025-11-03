@@ -88,36 +88,10 @@ onConnect((params) => {
   addEdges(params)
 })
 
-/*const node = useNode();*/
+function onNodeClick({ event, node }) {
+  /*console.log('Node clicked:', node, event);*/
+}
 
-/*watchEffect(() => {
-  if (node.connectedEdges && node.connectedEdges.value.length > 0) {
-    const filteredEdges = node.connectedEdges.value.filter(
-        (item) => item.target === node.id
-    );
-    referenceOptions.value = filteredEdges.map((edge) => {
-      const node = findNode(edge.source);
-      const currentItem: Option = {
-        groupName: node?.data.title ?? node?.label,
-        options: [],
-      };
-
-      if (node?.data.output) {
-        node?.data.output
-            .filter((item: any) => Boolean(item.name))
-            .forEach((option: any) => {
-              currentItem.options.push({
-                label: option.name,
-                value: option.name,
-              });
-            });
-      } else {
-        currentItem.options = [];
-      }
-      return currentItem;
-    });
-  }
-});*/
 </script>
 
 <template>
