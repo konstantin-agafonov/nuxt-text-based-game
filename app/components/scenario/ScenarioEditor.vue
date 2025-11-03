@@ -134,6 +134,7 @@ onConnect((params) => {
         :node-types="nodeTypes"
         v-model="scenario"
         fit-view
+        @node-click="onNodeClick"
     ></VueFlow>
   </div>
 </template>

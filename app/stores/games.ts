@@ -180,10 +180,10 @@ export const useGamesStore = defineStore('games', () => {
   }
 
   return {
-    games: readonly(games),
-    currentGame: readonly(currentGame),
-    loading: readonly(loading),
-    error: readonly(error),
+    games,
+    currentGame,
+    loading,
+    error,
     fetchGames,
     fetchGame,
     createGame,

@@ -148,7 +148,7 @@ export const useAuthStore = defineStore('auth', () => {
     }*/
 
   return {
-    isLoading: readonly(isLoading),
+    isLoading,
     fetchUser,
     getCsrfToken,
     initCsrf,
