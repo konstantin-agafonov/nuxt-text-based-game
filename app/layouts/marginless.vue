@@ -9,7 +9,7 @@
     <div class="flex flex-1 overflow-hidden">
       <Aside/>
 
-      <main class="flex-1 bg-gray-50 overflow-y-auto">
+      <main class="flex-1 bg-gray-50 overflow-y-auto relative overflow-x-hidden">
         <slot/>
       </main>
     </div>

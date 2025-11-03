@@ -41,17 +41,17 @@ function handleClickDuplicateBtn() {
         <div class="flex items-center gap-x-2">
           <Icon
               name="heroicons:pencil-square"
-              class="cursor-pointer w-4 h-4 text-green-600 group-hover:text-green-900"
+              class="cursor-pointer w-4 h-4 text-green-600 hover:text-green-700"
               @click="handleClickEdit"
           />
           <Icon
               name="heroicons:document-duplicate"
-              class="cursor-pointer w-4 h-4 text-blue-600 group-hover:text-blue-900"
+              class="cursor-pointer w-4 h-4 text-blue-600 hover:text-blue-700"
               @click="handleClickDuplicateBtn"
           />
           <Icon
               name="heroicons:trash"
-              class="cursor-pointer w-4 h-4 text-red-600 group-hover:text-red-900"
+              class="cursor-pointer w-4 h-4 text-red-600 hover:text-red-700"
               @click="handleClickDeleteBtn"
           />
         </div>
