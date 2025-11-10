@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const isCollapsed = ref(false)
+const isCollapsed = ref(true)
 
 const toggleCollapse = () => {
   isCollapsed.value = !isCollapsed.value

@@ -70,6 +70,8 @@
       </form>
     </div>-->
   </div>
+
+  <EditNodePanel/>
 </template>
 
 <script setup lang="ts">

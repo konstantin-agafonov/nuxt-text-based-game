@@ -40,9 +40,9 @@ export const useCategoriesStore = defineStore('categories', () => {
   }
 
   return {
-    categories: readonly(categories),
-    loading: readonly(loading),
-    error: readonly(error),
+    categories,
+    loading,
+    error,
     fetchCategories,
     getCategoryById,
     getCategoryName
