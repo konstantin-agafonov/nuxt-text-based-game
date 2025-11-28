@@ -39,8 +39,8 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(magicast@0.5.1)(vue-final-modal@4.5.5(@vueuse/core@14.0.0(vue@3.5.24(typescript@5.9.3)))(@vueuse/integrations@14.0.0(change-case@5.4.4)(focus-trap@7.6.5)(fuse.js@7.1.0)(vue@3.5.24(typescript@5.9.3)))(focus-trap@7.6.5)(vue@3.5.24(typescript@5.9.3)))
       '@vue-flow/core':
-        specifier: ^1.47.0
-        version: 1.47.0(vue@3.5.24(typescript@5.9.3))
+        specifier: ^1.48.0
+        version: 1.48.0(vue@3.5.24(typescript@5.9.3))
       eslint:
         specifier: ^9.39.0
         version: 9.39.0(jiti@2.6.1)
@@ -2010,8 +2010,8 @@ packages:
     peerDependencies:
       vue-final-modal: '>=4.0.0'
 
-  '@vue-flow/core@1.47.0':
-    resolution: {integrity: sha512-w+qrm/xjQP5NUeKUOMIbQvpOeivTbGZtY2lGffK5kHiN3ZLyEazhESc8OeIV9NZkK2T5DIeyX/nhHxCC45HLiw==}
+  '@vue-flow/core@1.48.0':
+    resolution: {integrity: sha512-keW9HGaEZEe4SKYtrzp5E+qSGJ5/z+9i2yRDtCr3o72IUnS0Ns1qQNsIbGGz0ygpKzg6LdtbVLWeYAvl3dzLQA==}
     peerDependencies:
       vue: ^3.3.0
 
@@ -7755,7 +7755,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@vue-flow/core@1.47.0(vue@3.5.24(typescript@5.9.3))':
+  '@vue-flow/core@1.48.0(vue@3.5.24(typescript@5.9.3))':
     dependencies:
       '@vueuse/core': 10.11.1(vue@3.5.24(typescript@5.9.3))
       d3-drag: 3.0.0
