@@ -48,8 +48,8 @@ importers:
         specifier: ^4.2.2
         version: 4.2.2(@parcel/watcher@2.5.1)(@types/node@24.9.1)(@vue/compiler-sfc@3.5.26)(cac@6.7.14)(db0@0.3.4)(eslint@9.39.2(jiti@2.6.1))(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.54.0)(terser@5.44.1)(typescript@5.9.3)(vite@7.3.0(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2)
       nuxt-auth-sanctum:
-        specifier: 2.0.0
-        version: 2.0.0
+        specifier: 2.1.1
+        version: 2.1.1
       nuxt3-notifications:
         specifier: ^1.3.1
         version: 1.3.1(@nuxt/kit@4.2.2(magicast@0.5.1))(vue@3.5.26(typescript@5.9.3))
@@ -4355,8 +4355,8 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nuxt-auth-sanctum@2.0.0:
-    resolution: {integrity: sha512-Fi/6Q1NrI+b5q7tNu+MTPA/zoK2lFEKyfm20pJclvqcVXfTn8FauVjpwKveNs1Pqn/txCScECffDmCWNGp1hkg==}
+  nuxt-auth-sanctum@2.1.1:
+    resolution: {integrity: sha512-AqHODf9JEhfzAU+8VRm6dVddUH5FjCpb5xCM6XljVzGQfBAtTU40SFnuv1dMNPIrHU9qlqXAMrIhTv2LfWCFIQ==}
 
   nuxt3-notifications@1.3.1:
     resolution: {integrity: sha512-r5gSyvHrf20xzb3j5DIrz3DZpaRcaLzjI9Sf8J2DvCugtgslnKQwCH/KKAOKKIqyeujhCWwrAk9LhcG+//uq8g==}
@@ -10549,7 +10549,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuxt-auth-sanctum@2.0.0:
+  nuxt-auth-sanctum@2.1.1:
     dependencies:
       defu: 6.1.4
       ofetch: 1.5.1
