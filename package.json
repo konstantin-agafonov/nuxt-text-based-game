@@ -14,7 +14,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.12.1",
+    "@nuxt/eslint": "1.14.0",
     "@nuxt/fonts": "0.13.0",
     "@nuxt/icon": "2.2.1",
     "@nuxt/image": "2.0.0",
