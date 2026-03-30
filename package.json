@@ -31,7 +31,7 @@
     "nuxt3-notifications": "^1.4.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.30",
-    "vue-router": "^5.0.2"
+    "vue-router": "^5.0.4"
   },
   "devDependencies": {
     "@types/set-cookie-parser": "^2.4.10",
