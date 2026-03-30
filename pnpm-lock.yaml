@@ -51,8 +51,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       nuxt3-notifications:
-        specifier: ^1.3.1
-        version: 1.3.1(@nuxt/kit@4.4.2(magicast@0.5.2))(vue@3.5.30(typescript@5.9.3))
+        specifier: ^1.4.0
+        version: 1.4.0(@nuxt/kit@4.4.2(magicast@0.5.2))(vue@3.5.30(typescript@5.9.3))
       pinia:
         specifier: ^3.0.4
         version: 3.0.4(typescript@5.9.3)(vue@3.5.30(typescript@5.9.3))
@@ -1010,8 +1010,8 @@ packages:
   '@kwsites/promise-deferred@1.1.1':
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
 
-  '@kyvg/vue3-notification@3.4.1':
-    resolution: {integrity: sha512-WhTWCbF36JHLJR5UdKmJF7KXGOGVy4tLeaJuKTHZhwttZWnbF9w1/c2d32tvCSwY9CdeX/n9uoaKWLMKK3vOyg==}
+  '@kyvg/vue3-notification@3.4.2':
+    resolution: {integrity: sha512-CZ2zOdXsbGCtWbdqMgbusKtZTkMT+dYpw9bmAitsdSNHT0knh4njD8X95JIyTMWvNVjhDkFedbkNiZLcPqttwQ==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -4375,8 +4375,8 @@ packages:
   nuxt-auth-sanctum@2.2.0:
     resolution: {integrity: sha512-8oEH3WoQqSvEz8v5iRI0sMIe4sRAlrI45jSAQtpoMJb+hVljGAJ8a+2IYOPWkImlH9wJYaeh6ua8GMEAfWrzWw==}
 
-  nuxt3-notifications@1.3.1:
-    resolution: {integrity: sha512-r5gSyvHrf20xzb3j5DIrz3DZpaRcaLzjI9Sf8J2DvCugtgslnKQwCH/KKAOKKIqyeujhCWwrAk9LhcG+//uq8g==}
+  nuxt3-notifications@1.4.0:
+    resolution: {integrity: sha512-bLFGJGu6LWzuCAazLaa0AuYQ07r+h5lalO5I5qNnyje0TZ9/fIzlQoS7/X58TuYbbmQa0lxtBSP2qPhaK0xYnQ==}
     engines: {node: '>= 14.20.0'}
     peerDependencies:
       '@nuxt/kit': ^3.0.0
@@ -6734,7 +6734,7 @@ snapshots:
 
   '@kwsites/promise-deferred@1.1.1': {}
 
-  '@kyvg/vue3-notification@3.4.1(vue@3.5.30(typescript@5.9.3))':
+  '@kyvg/vue3-notification@3.4.2(vue@3.5.30(typescript@5.9.3))':
     dependencies:
       vue: 3.5.30(typescript@5.9.3)
 
@@ -10609,9 +10609,9 @@ snapshots:
       ofetch: 1.5.1
       pathe: 2.0.3
 
-  nuxt3-notifications@1.3.1(@nuxt/kit@4.4.2(magicast@0.5.2))(vue@3.5.30(typescript@5.9.3)):
+  nuxt3-notifications@1.4.0(@nuxt/kit@4.4.2(magicast@0.5.2))(vue@3.5.30(typescript@5.9.3)):
     dependencies:
-      '@kyvg/vue3-notification': 3.4.1(vue@3.5.30(typescript@5.9.3))
+      '@kyvg/vue3-notification': 3.4.2(vue@3.5.30(typescript@5.9.3))
       '@nuxt/kit': 4.4.2(magicast@0.5.2)
       scule: 1.3.0
     transitivePeerDependencies:
