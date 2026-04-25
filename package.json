@@ -22,7 +22,7 @@
     "@nuxt/test-utils": "4.0.0",
     "@nuxtjs/tailwindcss": "6.14.0",
     "@pinia/nuxt": "^0.11.3",
-    "@unhead/vue": "^2.1.12",
+    "@unhead/vue": "^2.1.13",
     "@vue-final-modal/nuxt": "^1.0.3",
     "@vue-flow/core": "^1.48.2",
     "eslint": "^10.1.0",
