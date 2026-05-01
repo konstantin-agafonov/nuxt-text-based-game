@@ -37,7 +37,7 @@
     "@types/set-cookie-parser": "^2.4.10",
     "@vitest/ui": "^1.6.0",
     "@vue/test-utils": "^2.4.8",
-    "happy-dom": "^20.8.9",
+    "happy-dom": "^20.9.0",
     "set-cookie-parser": "^3.1.0",
     "vitest": "^1.6.0"
   }
