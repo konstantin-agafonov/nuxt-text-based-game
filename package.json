@@ -26,7 +26,7 @@
     "@vue-final-modal/nuxt": "^1.0.3",
     "@vue-flow/core": "^1.48.2",
     "eslint": "^10.2.1",
-    "nuxt": "^4.4.2",
+    "nuxt": "^4.4.4",
     "nuxt-auth-sanctum": "2.3.3",
     "nuxt3-notifications": "^1.4.0",
     "pinia": "^3.0.4",
